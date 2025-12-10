@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Amada ♥</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- QUIZ SECTION -->
+        <div id="quizSection" class="quiz-container">
+            <div class="quiz-content">
+                <div class="quiz-header">
+                    <h1 class="quiz-title">Bem-vinda, meu amor 💕</h1>
+                    <p class="quiz-subtitle">Responda algumas perguntas e desvende a surpresa que preparei para você...</p>
+                </div>
+
+                <div class="quiz-wrapper">
+                    <div id="questionContainer" class="question-box">
+                        <!-- Perguntas dinâmicas aqui -->
+                    </div>
+                    <button id="nextBtn" class="quiz-btn" style="display: none;">Próxima Pergunta</button>
+                    <button id="finishBtn" class="quiz-btn finish-btn" style="display: none;">Revelar Surpresa! 🎉</button>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHOTOS SECTION (Hidden até responder quiz) -->
+        <div id="photosSection" class="photos-container" style="display: none;">
+            <div class="album-wrapper">
+                <div class="album-header">
+                    <h1 class="album-title">✨ Nossos Momentos Especiais ✨</h1>
+                    <p class="album-subtitle">Uma viagem através do nosso amor...</p>
+                </div>
+
+                <div class="album-content">
+                    <!-- Moldura principal da foto -->
+                    <div class="photo-showcase">
+                        <button class="nav-btn prev" aria-label="Anterior">❮</button>
+                        <div class="photo-frame">
+                            <img id="photoDisplay" src="https://via.placeholder.com/400x500?text=Suas+Fotos+Aqui" alt="Sua foto especial">
+                        </div>
+                        <button class="nav-btn next" aria-label="Próximo">❯</button>
+                    </div>
+
+                    <!-- Miniaturas (como páginas do álbum) -->
+                    <div class="album-pages" id="thumbnails" aria-hidden="false"></div>
+
+                    <!-- Controles e Texto Romântico -->
+                    <div class="album-footer">
+                        <p class="romantic-text">
+                            Cada fotografia é um tesouro guardado com carinho. 
+                            Momentos únicos que definem a beleza da nossa história.
+                        </p>
+
+                        <div class="album-controls">
+                            <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
+                            <button id="addPhotoBtn" class="btn-add-photo">
+                                <span class="btn-icon">➕</span>
+                                <span class="btn-text">Adicionar Fotos</span>
+                            </button>
+                            <button id="autoplayToggle" class="btn-autoplay" title="Ativar/Desativar slideshow">▶︎</button>
+                        </div>
+
+                        <div class="hearts">
+                            <span class="heart">♥</span>
+                            <span class="heart">♥</span>
+                            <span class="heart">♥</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script_quiz.js"></script>
+</body>
+</html>
