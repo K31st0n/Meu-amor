@@ -30,6 +30,10 @@
         const autoplayToggle = getEl(root, opts.autoplayToggle) || document.getElementById('autoplayToggle');
         const frame = getEl(root, opts.frame) || root.querySelector('.photo-frame');
         const photosJsonUrl = opts.photosJsonUrl || 'photos.json';
+        // opções de dimensão da moldura / mat (espaço entre borda e foto)
+        const mat = typeof opts.mat === 'number' ? opts.mat : 20;
+        const maxInnerWidth = opts.maxInnerWidth || 380; // largura máxima da foto dentro da moldura
+        const maxInnerHeight = opts.maxInnerHeight || 520; // altura máxima da foto dentro da moldura
 
         if (!photoDisplay || !thumbnails) return null;
 
@@ -48,7 +52,33 @@
             }
 
             let srcUrl = normalize(photos[current]);
-            photoDisplay.src = encodeURI(srcUrl);
+            // define src (use onload para ajustar frame ao aspect ratio)
+            if (photoDisplay) {
+                photoDisplay.onload = function(){
+                    try {
+                        const nw = photoDisplay.naturalWidth || maxInnerWidth;
+                        const nh = photoDisplay.naturalHeight || maxInnerHeight;
+                        const ratio = nw / nh;
+                        let w = nw;
+                        let h = nh;
+                        if (w > maxInnerWidth) { w = maxInnerWidth; h = w / ratio; }
+                        if (h > maxInnerHeight) { h = maxInnerHeight; w = h * ratio; }
+                        // aplicar dimensões internas e ajustar moldura externa
+                        const outerW = Math.round(w + mat * 2);
+                        const outerH = Math.round(h + mat * 2);
+                        if (frame) {
+                            frame.style.width = outerW + 'px';
+                            frame.style.height = outerH + 'px';
+                        }
+                        photoDisplay.style.width = Math.round(w) + 'px';
+                        photoDisplay.style.height = Math.round(h) + 'px';
+                        photoDisplay.style.objectFit = 'cover';
+                    } catch (e) {
+                        // se algo falhar, não bloqueia a renderização
+                    }
+                };
+                photoDisplay.src = encodeURI(srcUrl);
+            }
 
             thumbnails.innerHTML = '';
             photos.forEach((src, i) => {

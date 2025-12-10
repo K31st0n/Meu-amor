@@ -36,3 +36,14 @@ Se quiser, eu posso:
 - ajustar o carregamento para tentar automaticamente variações de nomes (ex.: photo1.jpg..photo20.jpg).
 
 Diga qual opção prefere que eu aplique a seguir.
+
+---
+
+Alterações recentes:
+
+- `gallery.js`: adicionado utilitário que centraliza a lógica da galeria (fetch de `photos.json`, thumbnails, navegação, autoplay, upload e drag&drop).
+- `script_quiz.js`: agora usa `gallery.js` e inicializa a galeria quando o quiz termina.
+- `Amor/` foi atualizado para reutilizar `../gallery.js` e evitar duplicação.
+- `script.js` (raiz) foi removido por ser não referenciado.
+
+Se algo na sua instalação parar de funcionar, diga qual arquivo específico você estava usando e eu restauro/ajusto conforme necessário.
